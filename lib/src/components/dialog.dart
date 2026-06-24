@@ -1,7 +1,7 @@
 import 'package:boxy/flex.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:shadcn_ui/src/components/icon_button.dart';
 import 'package:shadcn_ui/src/theme/theme.dart';
 import 'package:shadcn_ui/src/theme/themes/shadows.dart';
@@ -360,7 +360,7 @@ class ShadDialog extends StatelessWidget {
 
   /// {@template ShadDialog.closeIconData}
   /// The icon data for the close button.
-  /// Used if [closeIcon] is null; defaults to [LucideIcons.x] if not specified.
+  /// Used if [closeIcon] is null; defaults to a HugeIcons close icon.
   /// {@endtemplate}
   final IconData? closeIconData;
 
@@ -554,17 +554,21 @@ class ShadDialog extends StatelessWidget {
         effectiveDialogTheme.backgroundColor ??
         theme.colorScheme.background;
 
+    final effectiveCloseIconData =
+        closeIconData ?? effectiveDialogTheme.closeIconData;
     final effectiveCloseIcon =
         closeIcon ??
-        (closeIconData == null && effectiveDialogTheme.closeIconData == null
-            ? null
-            : ShadIconButton.ghost(
-                icon: Icon(
-                  size: 16,
-                  closeIconData ??
-                      effectiveDialogTheme.closeIconData ??
-                      LucideIcons.x,
-                ),
+        ShadIconButton.ghost(
+                icon: effectiveCloseIconData != null
+                    ? Icon(
+                        size: 16,
+                        effectiveCloseIconData,
+                      )
+                    : const HugeIcon(
+                        icon: HugeIcons.strokeRoundedCancel01,
+                        size: 16,
+                        strokeWidth: 1.5,
+                      ),
                 width: 20,
                 height: 20,
                 padding: EdgeInsets.zero,
@@ -575,7 +579,7 @@ class ShadDialog extends StatelessWidget {
                 hoverForegroundColor: theme.colorScheme.foreground,
                 pressedForegroundColor: theme.colorScheme.foreground,
                 onPressed: () => Navigator.of(context).pop(),
-              ));
+              );
 
     final effectiveCloseIconPosition =
         closeIconPosition ??

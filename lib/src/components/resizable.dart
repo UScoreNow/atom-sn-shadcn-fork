@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:shadcn_ui/src/components/separator.dart';
 import 'package:shadcn_ui/src/theme/components/decorator.dart';
 import 'package:shadcn_ui/src/theme/theme.dart';
@@ -761,13 +761,18 @@ class ShadResizablePanelGroupState extends State<ShadResizablePanelGroup> {
                   decoration: effectiveHandleDecoration,
                   child: Padding(
                     padding: effectiveHandlePadding,
-                    child: Icon(
-                      widget.handleIconData ??
-                          (isHorizontal
-                              ? LucideIcons.gripVertical
-                              : LucideIcons.gripHorizontal),
-                      size: effectiveHandleSize,
-                    ),
+                    child: widget.handleIconData != null
+                        ? Icon(
+                            widget.handleIconData,
+                            size: effectiveHandleSize,
+                          )
+                        : HugeIcon(
+                            icon: isHorizontal
+                                ? HugeIcons.strokeRoundedDragDropVertical
+                                : HugeIcons.strokeRoundedDragDropHorizontal,
+                            size: effectiveHandleSize,
+                            strokeWidth: 1.5,
+                          ),
                   ),
                 );
 

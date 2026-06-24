@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:shadcn_ui/src/components/separator.dart';
 import 'package:shadcn_ui/src/raw_components/focusable.dart';
 import 'package:shadcn_ui/src/theme/theme.dart';
@@ -418,17 +418,22 @@ class _ShadAccordionItemState<T> extends State<ShadAccordionItem<T>>
             ];
 
         final effectiveIconData =
-            widget.iconData ??
-            theme.accordionTheme.iconData ??
-            LucideIcons.chevronDown;
+            widget.iconData ?? theme.accordionTheme.iconData;
 
         final effectiveIcon =
             widget.icon ??
-            Icon(
-              effectiveIconData,
-              color: theme.colorScheme.foreground,
-              size: 16,
-            );
+            (effectiveIconData != null
+                ? Icon(
+                    effectiveIconData,
+                    color: theme.colorScheme.foreground,
+                    size: 16,
+                  )
+                : HugeIcon(
+                    icon: HugeIcons.strokeRoundedArrowDown01,
+                    color: theme.colorScheme.foreground,
+                    size: 16,
+                    strokeWidth: 1.5,
+                  ));
 
         final effectivePadding =
             widget.padding ??

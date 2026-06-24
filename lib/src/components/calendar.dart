@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart' hide TextDirection;
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:shadcn_ui/src/components/button.dart';
 import 'package:shadcn_ui/src/components/icon_button.dart';
 import 'package:shadcn_ui/src/components/select.dart';
@@ -614,12 +614,12 @@ class ShadCalendar extends StatefulWidget {
   final double? navigationButtonIconSize;
 
   /// {@template ShadCalendar.backNavigationButtonIconData}
-  /// The back navigation button src, defaults to [LucideIcons.chevronLeft]
+  /// The back navigation button src, defaults to a HugeIcons left-arrow icon
   /// {@endtemplate}
   final IconData? backNavigationButtonIconData;
 
   /// {@template ShadCalendar.forwardNavigationButtonIconData}
-  /// The forward navigation button src, defaults to [LucideIcons.chevronRight]
+  /// The forward navigation button src, defaults to a HugeIcons right-arrow icon
   /// {@endtemplate}
   final IconData? forwardNavigationButtonIconData;
 
@@ -1219,13 +1219,11 @@ class _ShadCalendarState extends State<ShadCalendar> {
 
     final effectiveBackNavigationButtonSrc =
         widget.backNavigationButtonIconData ??
-        theme.calendarTheme.backNavigationButtonIconData ??
-        LucideIcons.chevronLeft;
+        theme.calendarTheme.backNavigationButtonIconData;
 
     final effectiveForwardNavigationButtonSrc =
         widget.forwardNavigationButtonIconData ??
-        theme.calendarTheme.forwardNavigationButtonIconData ??
-        LucideIcons.chevronRight;
+        theme.calendarTheme.forwardNavigationButtonIconData;
 
     final effectiveNavigationButtonPadding =
         widget.navigationButtonPadding ??
@@ -1476,10 +1474,16 @@ class _ShadCalendarState extends State<ShadCalendar> {
             padding: effectiveNavigationButtonPadding,
             enabled: !isPreviousMonthButtonDisabled,
             onHoverChange: (hovered) => backMonthButtonHovered.value = hovered,
-            icon: Icon(
-              effectiveBackNavigationButtonSrc,
-              size: effectiveNavigationButtonIconSize,
-            ),
+            icon: effectiveBackNavigationButtonSrc != null
+                ? Icon(
+                    effectiveBackNavigationButtonSrc,
+                    size: effectiveNavigationButtonIconSize,
+                  )
+                : HugeIcon(
+                    icon: HugeIcons.strokeRoundedArrowLeft01,
+                    size: effectiveNavigationButtonIconSize,
+                    strokeWidth: 1.5,
+                  ),
             onPressed: () => goToMonth(currentMonth.previousMonth),
           ),
         );
@@ -1499,10 +1503,16 @@ class _ShadCalendarState extends State<ShadCalendar> {
             onHoverChange: (hovered) =>
                 forwardMonthButtonHovered.value = hovered,
             onPressed: () => goToMonth(currentMonth.nextMonth),
-            icon: Icon(
-              effectiveForwardNavigationButtonSrc,
-              size: effectiveNavigationButtonIconSize,
-            ),
+            icon: effectiveForwardNavigationButtonSrc != null
+                ? Icon(
+                    effectiveForwardNavigationButtonSrc,
+                    size: effectiveNavigationButtonIconSize,
+                  )
+                : HugeIcon(
+                    icon: HugeIcons.strokeRoundedArrowRight01,
+                    size: effectiveNavigationButtonIconSize,
+                    strokeWidth: 1.5,
+                  ),
           ),
         );
       },

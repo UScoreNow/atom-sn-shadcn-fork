@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:shadcn_ui/src/components/button.dart';
 import 'package:shadcn_ui/src/components/icon_button.dart';
 import 'package:shadcn_ui/src/i18n/localizations_delegate.dart';
@@ -83,14 +83,20 @@ class ShadDefaultKeyboardToolbar extends StatelessWidget {
           children: [
             if (effectiveShowPreviousButton)
               ShadIconButton.ghost(
-                icon: const Icon(LucideIcons.chevronUp),
+                icon: const HugeIcon(
+                  icon: HugeIcons.strokeRoundedArrowUp01,
+                  strokeWidth: 1.5,
+                ),
                 onPressed: () {
                   FocusScope.of(context).previousFocus();
                 },
               ),
             if (effectiveShowNextButton)
               ShadIconButton.ghost(
-                icon: const Icon(LucideIcons.chevronDown),
+                icon: const HugeIcon(
+                  icon: HugeIcons.strokeRoundedArrowDown01,
+                  strokeWidth: 1.5,
+                ),
                 onPressed: () {
                   FocusScope.of(context).nextFocus();
                 },

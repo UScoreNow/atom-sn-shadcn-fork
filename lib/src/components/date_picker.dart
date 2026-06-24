@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart' as intl;
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:shadcn_ui/src/components/button.dart';
 import 'package:shadcn_ui/src/components/calendar.dart';
 import 'package:shadcn_ui/src/components/popover.dart';
@@ -778,7 +778,7 @@ class ShadDatePicker extends StatefulWidget {
   final Widget? trailing;
 
   /// {@template ShadDatePicker.iconData}
-  /// The icon of the date picker button, defaults to [LucideIcons.calendar].
+  /// The icon of the date picker button, defaults to a HugeIcons calendar icon.
   /// {@endtemplate}
   final IconData? iconData;
 
@@ -1030,9 +1030,15 @@ class _ShadDatePickerState extends State<ShadDatePicker> {
     final effectiveButtonTextStyle =
         widget.buttonTextStyle ?? theme.datePickerTheme.buttonTextStyle;
 
-    final defaultIcon = Icon(
-      widget.iconData ?? theme.datePickerTheme.iconData ?? LucideIcons.calendar,
-    );
+    final effectiveDatePickerIconData =
+        widget.iconData ?? theme.datePickerTheme.iconData;
+    final defaultIcon = effectiveDatePickerIconData != null
+        ? Icon(effectiveDatePickerIconData)
+        : const HugeIcon(
+            icon: HugeIcons.strokeRoundedCalendar03,
+            size: 16,
+            strokeWidth: 1.5,
+          );
     final effectiveLeading = widget.trailing == null || widget.leading != null
         ? IconTheme.merge(
             data: IconThemeData(
