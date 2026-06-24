@@ -1161,6 +1161,7 @@ class _ShadTimePickerFieldState extends State<ShadTimePickerField> {
             controller: controller,
             decoration: effectiveDecoration,
             placeholder: widget.placeholder,
+            textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.next,
             maxLength: 2,
