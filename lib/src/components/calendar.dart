@@ -2,8 +2,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart' hide TextDirection;
 import 'package:hugeicons/hugeicons.dart';
+import 'package:intl/intl.dart' hide TextDirection;
 import 'package:shadcn_ui/src/components/button.dart';
 import 'package:shadcn_ui/src/components/icon_button.dart';
 import 'package:shadcn_ui/src/components/select.dart';
@@ -619,7 +619,7 @@ class ShadCalendar extends StatefulWidget {
   final IconData? backNavigationButtonIconData;
 
   /// {@template ShadCalendar.forwardNavigationButtonIconData}
-  /// The forward navigation button src, defaults to a HugeIcons right-arrow icon
+  /// Forward navigation button src; defaults to a HugeIcons right-arrow icon.
   /// {@endtemplate}
   final IconData? forwardNavigationButtonIconData;
 

@@ -818,8 +818,7 @@ class ShadDialog extends StatelessWidget {
                 padding: effectivePadding,
                 child: widget,
               ),
-              if (effectiveCloseIcon != null)
-                effectiveCloseIcon.positionedWith(effectiveCloseIconPosition),
+              effectiveCloseIcon.positionedWith(effectiveCloseIconPosition),
             ],
           );
 
