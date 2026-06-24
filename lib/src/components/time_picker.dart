@@ -1131,11 +1131,9 @@ class _ShadTimePickerFieldState extends State<ShadTimePickerField> {
     final defaultLabelStyle = theme.textTheme.small.copyWith(fontSize: 12);
     final effectiveLabelStyle = defaultLabelStyle.merge(widget.labelStyle);
     final effectiveWidth = widget.width ?? 58;
-    // End padding is larger than start to nudge the centred digits right onto
-    // the true horizontal centre (the value otherwise reads ~1px left).
     final effectivePadding =
         widget.padding ??
-        const EdgeInsetsDirectional.fromSTEB(12, 8, 14, 8);
+        const EdgeInsets.symmetric(horizontal: 12, vertical: 8);
 
     final effectiveDecoration = ShadDecoration(
       border: ShadBorder.all(
@@ -1163,6 +1161,10 @@ class _ShadTimePickerFieldState extends State<ShadTimePickerField> {
             controller: controller,
             decoration: effectiveDecoration,
             placeholder: widget.placeholder,
+            // The editable sits in a loose Flexible inside the field Row; with
+            // the default start alignment its content-sized box hugs the left,
+            // so textAlign alone can't centre it. Centre the Row instead.
+            mainAxisAlignment: MainAxisAlignment.center,
             textAlign: TextAlign.center,
             cursorWidth: 0,
             keyboardType: TextInputType.number,
