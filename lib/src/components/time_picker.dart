@@ -1133,7 +1133,7 @@ class _ShadTimePickerFieldState extends State<ShadTimePickerField> {
     final effectiveWidth = widget.width ?? 58;
     final effectivePadding =
         widget.padding ??
-        const EdgeInsets.symmetric(horizontal: 12, vertical: 8);
+        const EdgeInsets.symmetric(horizontal: 10, vertical: 8);
 
     final effectiveDecoration = ShadDecoration(
       border: ShadBorder.all(
