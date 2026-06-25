@@ -448,14 +448,26 @@ class _ShadRadioState<T> extends State<ShadRadio<T>> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               labelRow,
-              // Sublabel sits under the label, not the control: a SizedBox
-              // reserves the control's width so it aligns with the label start.
-              // Same muted/mutedForeground style as the checkbox sublabel.
+              // Sublabel sits under the label, not the control: an invisible,
+              // inert copy of the control reserves its exact footprint so the
+              // sublabel lines up with the label start. Same muted/
+              // mutedForeground style as the checkbox sublabel.
               Row(
                 textDirection: widget.direction,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(width: effectiveSize),
+                  ExcludeSemantics(
+                    child: Visibility(
+                      visible: false,
+                      maintainSize: true,
+                      maintainAnimation: true,
+                      maintainState: true,
+                      child: Padding(
+                        padding: effectiveRadioPadding,
+                        child: radio,
+                      ),
+                    ),
+                  ),
                   Flexible(
                     child: Padding(
                       padding: effectivePadding,
